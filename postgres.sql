@@ -19,3 +19,7 @@ END;
 $func$
 
 select emp_details(1)
+
+-- the below query can apply nulls last for multiple columns
+SELECT * FROM client ORDER BY CASE WHEN filecount IS NOT NULL THEN 0 ELSE 1 END, ID DESC;
+reference -> https://dbfiddle.uk/?rdbms=postgres_9.6&fiddle=4d9e94508dc1348d56f3bd5130b64c33
