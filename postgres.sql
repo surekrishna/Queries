@@ -44,3 +44,12 @@ FROM
     pg_stat_activity
 WHERE client_addr = '127.0.0.1' and
     datname = (SELECT datname FROM pg_database WHERE oid = 16392)ORDER BY pid
+    
+-- the below query is used to get the details like did, datname, datallowconn, serverencoding, cancreate, datlastsysold details
+SELECT
+    db.oid as did, db.datname, db.datallowconn,
+    pg_encoding_to_char(db.encoding) AS serverencoding,
+    has_database_privilege(db.oid, 'CREATE') as cancreate, datlastsysoid
+FROM
+    pg_database db
+WHERE db.oid = 16392
