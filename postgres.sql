@@ -53,3 +53,10 @@ SELECT
 FROM
     pg_database db
 WHERE db.oid = 16392
+
+-- To get the list of indexs
+select * from pg_indexes WHERE schemaname = 'hrms_dev'
+-- Default index created
+CREATE UNIQUE INDEX "employee_leavePK" ON hrms_dev.employee_leave USING btree (id)
+--custom index created
+CREATE INDEX employee_emp_id_date_idx ON public.employee USING btree (employee_id, date)
