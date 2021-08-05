@@ -60,3 +60,8 @@ select * from pg_indexes WHERE schemaname = 'public'
 CREATE UNIQUE INDEX "employee_leavePK" ON hrms_dev.employee_leave USING btree (id)
 --custom index created
 CREATE INDEX employee_emp_id_date_idx ON public.employee USING btree (employee_id, date)
+
+-- create drop statements for the schema using below command
+select '-- drop table ' || tablename || ' cascade;' from pg_tables 
+where tablename not like 'pg%' and tablename not like 'sql%';
+
